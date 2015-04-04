@@ -5,7 +5,7 @@ var router = express.Router();
  * GET /users
  */
 router.get('/', function(req, res) {
-  res.render('users/index');
+  res.render('users/index', {fullname: req.session.fullname, title: 'User admin'});
 });
 
 /**

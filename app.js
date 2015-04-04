@@ -12,6 +12,17 @@ var users = require('./routes/users');
 
 var app = express();
 
+// Database connection
+var db = require('knex')({
+   client: 'mysql',
+    connection: {
+        host: 'localhost',
+        database: 'userman',
+        user: 'root',
+        password: '789124'
+    }
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -27,9 +38,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: 'SecretKey))))',
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
+    saveUninitialized: true
 }));
+
+app.use(function (req, res, next) {
+    req.db = db;
+    next();
+});
 
 var auth = function (req, res, next) {
     if (req.session.username) {
@@ -38,6 +53,7 @@ var auth = function (req, res, next) {
         res.redirect('/login');
     }
 };
+
 app.use('/users', auth, users);
 app.use('/login', login);
 
@@ -54,15 +70,15 @@ app.use(function(req, res, next) {
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
-}
+//if (app.get('env') === 'development') {
+//  app.use(function(err, req, res, next) {
+//    res.status(err.status || 500);
+//    res.render('error', {
+//      message: err.message,
+//      error: err
+//    });
+//  });
+//}
 
 // production error handler
 // no stacktraces leaked to user
