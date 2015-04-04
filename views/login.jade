@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title= title
+
+    link(rel="stylesheet", href="/vendor/lumx/dist/lumx.css")
+    link(rel="stylesheet", href="/vendor/mdi/css/materialdesignicons.css")
+    link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700")
+
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+  body(ng-app="App")
+
+      div.toolbar.bgc-red-500
+          div.toolbar__left(class="mr+++")
+              button.btn.btn--l.btn--white.btn--icon(lx-ripple)
+                  i.mdi.mdi-menu
+          span.toolbar__label.fs-title.tc-white User Management System
+
+      div(class="p+").card
+          block content
+
+
+      script(src="/vendor/jquery/dist/jquery.js")
+      script(src="/vendor/velocity/velocity.js")
+      script(src="/vendor/moment/min/moment-with-locales.js")
+      script(src="/vendor/angular/angular.js")
+      script(src="/vendor/angular-route/angular-route.js")
+      script(src="/vendor/lumx/dist/lumx.js")
+
+      script(src="/javascripts/Apps.js")
+
+      block scripts
