@@ -1,0 +1,13 @@
+extends layout
+
+block scripts 
+    script(src="/javascripts/UploadController.js")
+        
+block content
+    form(enctype='multipart/form-data', 
+    action='/douploads', method='POST', ng-upload="complete(contents)"
+    ng-controller="UploadController")
+      | Send this file: 
+      input(name='userfile', type='file')
+      button(ng-click="submit()").btn.btn--l.btn--green.btn--raised ส่งไฟล์ 
+      div#progress

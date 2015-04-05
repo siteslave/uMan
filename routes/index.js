@@ -102,4 +102,12 @@ router.post('/save_edit', function (req, res) {
 
 });
 
+router.get('/uploads', function (req, res) {
+    res.render('uploads');
+});
+
+router.post('/douploads', function (req, res) {
+    res.send(req.body);
+});
+
 module.exports = router;

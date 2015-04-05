@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
+var multer  = require('multer');
 // Include route file
 var index = require('./routes/index');
 var login = require('./routes/login');
@@ -24,6 +24,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(multer({ dest: './uploads/'}));
 
 app.use(session({
     secret: 'SecretKey))))',
