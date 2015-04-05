@@ -104,4 +104,29 @@ exports.saveEdit = function (db, id, fullname, active) {
         });
 
     return q.promise;
-}
+};
+
+exports.charts = function (db) {
+    /*
+    select c.name, count(*) as total
+    from users as u
+    inner join categories as c on c.id=u.cate_id
+
+    group by c.name
+    */
+
+    var q = Q.defer();
+
+    var sql = 'select c.name, count(*) as total ' +
+              'from users as u ' +
+              'inner join categories as c on c.id=u.cate_id ' +
+              'group by c.name';
+
+    db.raw(sql)
+        .exec(function (err, rows) {
+            if (err) q.reject(err);
+            else q.resolve(rows[0]);
+        });
+
+    return q.promise;
+};
