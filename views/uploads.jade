@@ -8,6 +8,6 @@ block content
     action='/douploads', method='POST', ng-upload="complete(contents)"
     ng-controller="UploadController")
       | Send this file: 
-      input(name='userfile', type='file')
+      input(name='userfile', type='file', accept="image/*")
       button(ng-click="submit()").btn.btn--l.btn--green.btn--raised ส่งไฟล์ 
       div#progress
