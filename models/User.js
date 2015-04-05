@@ -32,3 +32,16 @@ exports.all = function (db) {
     return q.promise;
 
 };
+
+exports.save = function (db, user) {
+    var q = Q.defer();
+
+    db('users')
+        .insert(user)
+        .exec(function (err) {
+            if (err) q.reject(err);
+            else q.resolve();
+        });
+
+    return q.promise;
+};

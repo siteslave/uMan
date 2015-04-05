@@ -1,40 +1,15 @@
 extends layout
 
 block scripts
+    script(src="/javascripts/Users.js")
+    script(src="/javascripts/UsersNewController.js")
+    script(src="/javascripts/UsersNewService.js")
+    script(src="/javascripts/UsersEditController.js")
+    script(src="/javascripts/UsersEditService.js")
     script(src="/javascripts/UsersController.js")
     script(src="/javascripts/UsersService.js")
 
 block content
     div(flex-container="row")
-        div(flex-item="9")
-            .data-table-container(ng-controller="UsersController")
-                table.data-table.data-table--has-secondary
-                    thead
-                        tr
-                            th #
-                            th ชื่อผู้ใช้งาน
-                            th ชื่อ - สกุล
-                            th Active
-                            th
-                        tr
-                            td(colspan="5").divider.divider--dark
-                    tbody
-                        tr(ng-repeat="u in users").data-table__clickable-row
-                            td {{ $index+1 }}
-                            td {{ u.username }}
-                            td {{ u.fullname }}
-                            td {{ u.active }}
-                            td
-                                
-                                lx-dropdown(position='right', from-top)
-                                    button.btn.btn--l.btn--black.btn--icon(lx-ripple,   lx-dropdown-toggle)
-                                        i.mdi.mdi-dots-vertical
-
-                                    lx-dropdown-menu
-                                        ul
-                                            li
-                                                a.dropdown-link Action
-
-                br
-                button(lx-ripple).btn.btn--l.btn--red.btn--fab
-                    i.mdi.mdi-plus
+        div(flex-item="9", ng-view)
+            
