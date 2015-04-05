@@ -110,4 +110,17 @@ router.post('/douploads', function (req, res) {
     res.send(req.body);
 });
 
+router.get('/charts', function (req, res) {
+    res.render('charts');
+});
+
+router.post('/getchart', function (req, res) {
+    Users.charts(req.db)
+        .then(function (data) {
+            res.send({ok: true, rows: data});
+        }, function (err) {
+            res.send({ok: false, msg: err});
+        });
+});
+
 module.exports = router;

@@ -1,0 +1,28 @@
+extends layout
+
+block scripts 
+    script(src="/javascripts/ChartController.js")
+    script(src="/javascripts/ChartService.js")
+        
+block content
+    | Charts
+    div(flex-container="row", flex-gutter="24", ng-controller="ChartController")
+        div(flex-item="6")
+            //- table
+            div.data-table-container
+                table.data-table
+                    thead
+                        tr
+                            th #
+                            th Name
+                            th Total
+                        tr
+                            td(colspan="3").divider.divider--dark
+                    tbody
+                        tr(ng-repeat="u in users")
+                            td {{ $index+1 }}
+                            td {{ u.name }}
+                            td {{ u.total | number }}
+                            
+        div(flex-item="6")
+            highchart(config="chartConfig")
