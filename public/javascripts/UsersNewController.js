@@ -11,11 +11,16 @@ App.controller('UsersNewController', function ($scope, $location, UsersNewServic
                 if (data.ok) {
                     $location.path('/');
                 } else {
-                    console.log(data.msg);
-                    LxNotificationService.error('Oop!');
+                    if (angular.isObject(data.msg)) {
+                        console.log(data.msg);
+                        LxNotificationService.error('Oop!');
+                    } else {
+                        LxNotificationService.error(data.msg);
+                    }
+
                 }
             }, function (err) {
-                console.log(data.msg);
+                console.log(err);
                 LxNotificationService.error('Connection failed');
             });
     };

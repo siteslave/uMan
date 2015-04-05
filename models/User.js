@@ -18,6 +18,20 @@ exports.doLogin = function (db, username, password) {
     return q.promise;
 };
 
+exports.checkDuplicated = function (db, username) {
+    var q = Q.defer();
+
+    db('users')
+        .count('* as total')
+        .where('username', username)
+        .exec(function (err, rows) {
+            if (err) q.reject(err);
+            else q.resolve(rows[0].total);
+        });
+
+    return q.promise;
+};
+
 exports.all = function (db) {
 
     var q = Q.defer();

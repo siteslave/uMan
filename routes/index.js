@@ -43,12 +43,22 @@ router.post('/save', function (req, res) {
     item.password = encryptPassword;
     item.active = user.active;
 
-    Users.save(req.db, item)
-        .then(function () {
-            res.send({ok: true});
+    Users.checkDuplicated(req.db, item.username)
+        .then(function (total) {
+            if (total > 0) {
+                res.send({ok: false, msg: 'ข้อมูลซ้ำ'});
+            } else {
+                Users.save(req.db, item)
+                    .then(function () {
+                        res.send({ok: true});
+                    }, function (err) {
+                        res.send({ok: false, msg: err});
+                    });
+            }
         }, function (err) {
-            res.send({ok: false, msg: err});
+
         });
+
 });
 
 
