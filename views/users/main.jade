@@ -24,7 +24,9 @@
                         lx-dropdown-menu
                             ul
                                 li
-                                    a.dropdown-link Action
+                                    a(href="#/edit/{{u.id}}").dropdown-link Edit
+                                li
+                                    a(ng-click="remove(u.id, $index)").dropdown-link Delete
 
     br
     a(lx-ripple, href="#/new").btn.btn--l.btn--red.btn--fab
