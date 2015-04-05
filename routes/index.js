@@ -56,10 +56,50 @@ router.post('/save', function (req, res) {
                     });
             }
         }, function (err) {
-
+            res.send({ok: false, msg: err});
         });
 
 });
 
+router.post('/delete', function (req, res) {
+    var id = req.body.id;
+
+    Users.remove(req.db, id)
+        .then(function () {
+            res.send({ok: true});
+        }, function (err) {
+            res.send({ok: false, msg: err});
+        });
+
+});
+
+router.post('/edit', function (req, res) {
+
+    var id = req.body.id;
+
+    Users.edit(req.db, id)
+        .then(function (rows) {
+            res.send({ok: true, users: rows});
+        }, function (err) {
+            res.send({ok: false, msg: err});
+        });
+
+});
+
+
+router.post('/save_edit', function (req, res) {
+
+    var id = req.body.id;
+    var fullname = req.body.fullname;
+    var active = req.body.active;
+
+    Users.saveEdit(req.db, id, fullname, active)
+        .then(function () {
+            res.send({ok: true});
+        }, function (err) {
+            res.send({ok: false, msg: err});
+        });
+
+});
 
 module.exports = router;

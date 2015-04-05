@@ -1,1 +1,31 @@
-| Edit
+.fs-headline
+    | แก้ไขข้อมูล
+    
+form(name="frmEdit")
+    div(flex-container="row", flex-gutter="24")
+        div(flex-item="12")
+            lx-text-field(label="ชื่อ-สกุล")
+                input(type="text", ng-model="fullname", ng-required="true")
+                    
+                    
+    div(flex-container="row", flex-gutter="24")
+        div(flex-item="6")
+            lx-text-field(label="Username")
+                input(type="text", ng-model="username", ng-disabled="true", ng-required="true")        
+
+    div(flex-container="row", flex-gutter="24")
+        div(flex-item)
+            .switch(class="mt+")
+                input#switch2.switch__input(type='checkbox', checked, ng-model="active")
+                label.switch__label(for='switch2') Switch with help
+                span.switch__help
+                    | เปิด/ปิด การใช้งาน
+
+
+br
+    
+button(ng-click="save()", ng-disabled="frmEdit.$invalid").btn.btn--l.btn--green.btn--raised บันทึกข้อมูล
+
+| &nbsp;
+        
+a(href="#/").btn.btn--l.btn--grey.btn--raised ย้อนกลับ

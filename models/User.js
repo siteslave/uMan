@@ -59,3 +59,49 @@ exports.save = function (db, user) {
 
     return q.promise;
 };
+
+exports.remove = function (db, id) {
+    var q = Q.defer();
+
+    db('users')
+        .delete()
+        .where('id', id)
+        .exec(function (err) {
+            if (err) q.reject(err);
+            else q.resolve();
+        });
+
+    return q.promise;
+};
+
+exports.edit = function (db, id) {
+    var q = Q.defer();
+
+    db('users')
+        .select('username', 'fullname', 'active')
+        .where('id', id)
+        .limit(1)
+        .exec(function (err, rows) {
+            if (err) q.reject(err);
+            else q.resolve(rows[0]);
+        });
+
+    return q.promise;
+};
+
+exports.saveEdit = function (db, id, fullname, active) {
+    var q = Q.defer();
+
+    db('users')
+        .update({
+            fullname: fullname,
+            active: active
+        })
+        .where('id', id)
+        .exec(function (err) {
+            if (err) q.reject(err);
+            else q.resolve();
+        });
+
+    return q.promise;
+}
