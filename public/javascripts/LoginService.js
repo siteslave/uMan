@@ -8,7 +8,7 @@ App.factory('LoginService', function ($q, $http) {
             $http({
                 url: '/login/dologin',
                 method: 'POST',
-                data: { //params: { username: username, password: password }
+                data: {
                     username: username,
                     password: password
                 }

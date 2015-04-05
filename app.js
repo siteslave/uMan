@@ -6,22 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-var routes = require('./routes/index');
+// Include route file
+var index = require('./routes/index');
 var login = require('./routes/login');
 var users = require('./routes/users');
 
 var app = express();
-
-// Database connection
-var db = require('knex')({
-   client: 'mysql',
-    connection: {
-        host: 'localhost',
-        database: 'userman',
-        user: 'root',
-        password: '789124'
-    }
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,6 +31,17 @@ app.use(session({
     saveUninitialized: true
 }));
 
+// Database connection
+var db = require('knex')({
+   client: 'mysql',
+    connection: {
+        host: 'localhost',
+        database: 'userman',
+        user: 'root',
+        password: '789124'
+    }
+});
+
 app.use(function (req, res, next) {
     req.db = db;
     next();
@@ -54,10 +55,10 @@ var auth = function (req, res, next) {
     }
 };
 
+// Route mapping
 app.use('/users', auth, users);
 app.use('/login', login);
-
-app.use('/', auth, routes);
+app.use('/', auth, index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

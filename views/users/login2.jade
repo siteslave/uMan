@@ -7,15 +7,17 @@ block scripts
 block content
 
     div(flex-container="column", flex-align="space-between center", ng-controller="LoginController")
-        form(name="frmLogin")
+        form(action="/login/dologin2", method="POST")
             div(flex-item="6", style="width: 300px;")
                 .fs-title.display-block
                     i.mdi.mdi-account-key.icon.icon--l.icon--red.icon--circled
-                    | &nbsp; เข้าสู่ระบบ (Login system)
+                    | &nbsp; เข้าสู่ระบบ (Login system 2)
 
                 lx-text-field(label="Username")
-                    input(type="text", ng-model="username")
+                    input(type="text", name="username")
                 lx-text-field(label="Password")
-                    input(type="password", ng-model="password")
+                    input(type="password", name="password")
 
-                button(ng-click="doLogin()").btn.btn--l.btn--green.btn--raised เข้าสู่ระบบ
+                button(ng-click="doLogin()", type="submit").btn.btn--l.btn--green.btn--raised เข้าสู่ระบบ
+                br
+                p(style="color: red;")= msg
