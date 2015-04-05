@@ -1,1 +1,1 @@
-var App = angular.module('App', ['lumx', 'ngRoute', 'ngUpload', 'highcharts-ng']);
+var App = angular.module('App', ['lumx', 'ngRoute', 'ngUpload', 'highcharts-ng', 'ui.map']);

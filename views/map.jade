@@ -1,0 +1,25 @@
+extends layout
+
+block scripts
+    script(src="/javascripts/MapController.js")
+    script(src="/javascripts/MapService.js")    
+
+block content
+    | Google map
+    
+    div(ng-controller="MapController")
+        div(flex-container="row", flex-gutter="24")
+            div(flex-item="3")
+                lx-text-field(label="Latitude")
+                    input(type="text", ng-model="lat", ng-disabled="true")
+            div(flex-item="3")
+                lx-text-field(label="Longitude")
+                    input(type="text", ng-model="lng", ng-disabled="true")
+                        
+            div(flex-item="4")
+                br
+                button(ng-click="saveMap()").btn.btn--l.btn--green.btn--raised บันทึก
+                | &nbsp;
+                button(ng-click="showRoute()").btn.btn--l.btn--red.btn--raised Show route
+        br
+        .map-canvas#myMap(ui-map='myMap', ui-options='mapOptions', ui-event="{'map-click': 'addMarker($event, $params)'}")

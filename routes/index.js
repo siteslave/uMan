@@ -123,4 +123,8 @@ router.post('/getchart', function (req, res) {
         });
 });
 
+router.get('/map', function (req, res) {
+    res.render('map');
+});
+
 module.exports = router;

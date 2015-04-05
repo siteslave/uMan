@@ -30,6 +30,8 @@ html
                     ul
                         
                         li
+                            a(href="/map").dropdown-link Maps
+                        li
                             a(href="/charts").dropdown-link Charts
                         li
                             a(href="/uploads").dropdown-link อัปโหลดไฟล์
@@ -53,6 +55,9 @@ html
       script(src="/vendor/highcharts-ng/dist/highcharts-ng.js")
           
       script(src="/vendor/lodash/lodash.min.js")
+      script(src='/vendor/angular-ui-utils/ui-utils.js')
+      script(src='/vendor/angular-ui-map/ui-map.js')
+      script(src='https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false')
 
       script(src="/javascripts/Apps.js")
 
