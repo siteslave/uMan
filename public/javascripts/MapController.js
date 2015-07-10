@@ -9,8 +9,9 @@ App.controller('MapController', function ($scope) {
     $scope.markers = [];
 
     $scope.addMarker = function (event, param) {
-        $scope.lat = param[0].latLng.k;
-        $scope.lng = param[0].latLng.D;
+        console.log(param);
+        $scope.lat = param[0].latLng.A;
+        $scope.lng = param[0].latLng.F;
 
         $scope.doClearMarker();
 

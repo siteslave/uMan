@@ -37,7 +37,7 @@ var db = require('knex')({
    client: 'mysql',
     connection: {
         host: 'localhost',
-        database: 'userman',
+        database: 'uman',
         user: 'root',
         password: '789124'
     }
